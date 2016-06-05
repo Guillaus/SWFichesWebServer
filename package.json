@@ -1,0 +1,14 @@
+{
+  "name": "swficheswebserver",
+  "version": "1.0.0",
+  "description": "A web server to fetch the pdf documents of the androïd application swfiches",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js" 
+  }, 
+  "author": "Guillaume Coppens, Benoît Meunier",
+  "dependencies": {
+    "express": "~4.13.4",
+    "body-parser": "^1.15.0"
+  }
+}
