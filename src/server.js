@@ -5,6 +5,9 @@ var app = express();
 
 var port = Number(process.env.PORT);
 
+app.get('/', function(req, res) {
+	res.send('Hello World');
+});
 
 app.get('/:filename', function (req, res) {
     var filename = req.params.filename;
