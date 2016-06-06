@@ -3,6 +3,9 @@ var fs = require('fs');
 var path = require('path');
 var app = express();
 
+var port = Number(process.env.PORT);
+
+
 app.get('/:filename', function (req, res) {
     var filename = req.params.filename;
     try {
@@ -24,6 +27,4 @@ app.get('/:filename', function (req, res) {
 
 });
 
-app.listen('8080', function() {
-
-});
+app.listen(port || 8080);
