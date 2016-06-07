@@ -6,7 +6,19 @@ var app = express();
 var port = Number(process.env.PORT);
 
 app.get('/', function(req, res) {
-	res.send('Hello World');
+
+    var files = fs.readdirSync(path.resolve(__dirname, '../public'));
+    var availableFiles = [];
+    var i = 0;
+
+    for (i; i < files.length; i++) {
+
+        if (files[i].endsWith(".pdf")) {
+            availableFiles.push(files[i]);
+        }
+    }
+
+    res.send(JSON.stringify(availableFiles));
 });
 
 app.get('/:filename', function (req, res) {
