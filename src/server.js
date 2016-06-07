@@ -5,7 +5,7 @@ var app = express();
 
 var port = Number(process.env.PORT);
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 
     var files = fs.readdirSync(path.resolve(__dirname, '../public'));
     var availableFiles = [];
@@ -25,12 +25,17 @@ app.get('/:filename', function (req, res) {
     var filename = req.params.filename;
     try {
 
-        res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-        res.setHeader('Content-type', 'application/pdf');
-
         var filepath = path.resolve(__dirname, '../public/' + filename);
-        var stream = fs.createReadStream(filepath);
-        stream.pipe(res);
+
+        res.download(filepath, filename, function (err) {
+
+            if (err) {
+                res.send({
+                    statuCode: 404,
+                    error: err.message
+                });
+            }
+        });
 
     } catch (exception) {
         res.send({
